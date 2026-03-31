@@ -1,0 +1,23 @@
+services:
+  frontend:
+    image: mickeysubhodip/frontend:latest
+    ports:
+      - "3000:3000"
+    restart: always
+    depends_on:
+      - backend
+
+  backend:
+    image: mickeysubhodip/backend:latest
+    restart: always
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:4.2.0
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
